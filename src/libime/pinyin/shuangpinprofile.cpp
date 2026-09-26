@@ -116,6 +116,25 @@ public:
             }
         }
 
+        // Build key hints from the actual shuangpin key mappings.
+        std::map<char, std::set<std::string>> keyHintCandidates;
+
+        for (const auto &[key, final] : finalMap_) {
+            keyHintCandidates[key].insert(
+                PinyinEncoder::finalToString(final));
+        }
+
+        for (const auto &[key, initial] : initialMap_) {
+            keyHintCandidates[key].insert(
+                PinyinEncoder::initialToString(initial));
+        }
+
+        for (const auto &[key, candidates] : keyHintCandidates) {
+            if (candidates.size() == 1) {
+                keyHints_[key] = *candidates.begin();
+            }
+        }
+
         auto addPinyinToList =
             [](std::multimap<PinyinSyllable, PinyinFuzzyFlags> &pys,
                PinyinInitial i, PinyinFinal f, PinyinFuzzyFlags flags) {
@@ -514,4 +533,11 @@ ShuangpinProfile::validInitial() const {
     FCITX_D();
     return d->validInitials_;
 }
+
+const ShuangpinProfile::KeyHintMapType &
+ShuangpinProfile::keyHints() const {
+    FCITX_D();
+    return d->keyHints_;
+}
+
 } // namespace libime
