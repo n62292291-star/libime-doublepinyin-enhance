@@ -36,6 +36,7 @@ public:
     using TableType =
         std::map<std::string, std::multimap<PinyinSyllable, PinyinFuzzyFlags>>;
     using ValidInputSetType = std::set<char>;
+    using KeyHintMapType = std::map<char, std::string>;
     explicit ShuangpinProfile(ShuangpinBuiltinProfile profile);
     explicit ShuangpinProfile(std::istream &in);
 
