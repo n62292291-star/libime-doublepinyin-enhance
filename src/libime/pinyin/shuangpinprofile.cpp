@@ -43,6 +43,7 @@ public:
     ShuangpinProfile::ValidInputSetType validInputs_;
     ShuangpinProfile::ValidInputSetType validInitials_;
     ShuangpinProfile::TableType spTable_;
+    ShuangpinProfile::KeyHintMapType keyHints_;
 
     void buildShuangpinTable(const PinyinCorrectionProfile *correctionProfile) {
         // Set up valid inputs.
