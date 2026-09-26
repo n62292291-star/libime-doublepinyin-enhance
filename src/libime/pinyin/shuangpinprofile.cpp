@@ -124,7 +124,8 @@ public:
         }
 
         for (const auto &[key, initial] : initialMap_) {
-            keyHintCandidates[key].insert(PinyinEncoder::initialToString(initial));
+            keyHintCandidates[key].insert(
+                PinyinEncoder::initialToString(initial));
         }
 
         for (const auto &[key, candidates] : keyHintCandidates) {
@@ -219,6 +220,9 @@ public:
                                         singleCharFinalIter->second, c};
                                 }
                             }
+                        }
+                        if (input.empty()) {
+                            continue;
                         }
                         spTable_[input].emplace(
                             PinyinSyllable{PinyinInitial::Zero, item.second},
