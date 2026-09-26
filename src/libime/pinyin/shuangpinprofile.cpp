@@ -120,13 +120,11 @@ public:
         std::map<char, std::set<std::string>> keyHintCandidates;
 
         for (const auto &[key, final] : finalMap_) {
-            keyHintCandidates[key].insert(
-                PinyinEncoder::finalToString(final));
+            keyHintCandidates[key].insert(PinyinEncoder::finalToString(final));
         }
 
         for (const auto &[key, initial] : initialMap_) {
-            keyHintCandidates[key].insert(
-                PinyinEncoder::initialToString(initial));
+            keyHintCandidates[key].insert(PinyinEncoder::initialToString(initial));
         }
 
         for (const auto &[key, candidates] : keyHintCandidates) {
@@ -534,8 +532,7 @@ ShuangpinProfile::validInitial() const {
     return d->validInitials_;
 }
 
-const ShuangpinProfile::KeyHintMapType &
-ShuangpinProfile::keyHints() const {
+const ShuangpinProfile::KeyHintMapType &ShuangpinProfile::keyHints() const {
     FCITX_D();
     return d->keyHints_;
 }
